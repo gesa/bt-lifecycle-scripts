@@ -1,6 +1,6 @@
 # Braintree Lifecycle Scripts - Release Notes
 
-## Unreleased
+## v0.0.3 (2019-09-19)
 
 - Added README
 

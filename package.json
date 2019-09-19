@@ -1,6 +1,6 @@
 {
   "name": "bt-js-lifecycle-scripts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Shared lifecycle scripts for Braintree: Updates Changelog on version; Updates Github releases on publish.",
   "bin": {
     "run-version": "./update-changelog",

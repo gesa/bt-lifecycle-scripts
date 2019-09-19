@@ -7,8 +7,8 @@
     "run-publish": "./create-gh-release"
   },
   "scripts": {
-    "version": "run-version",
-    "prepublishOnly": "create-gh-release"
+    "version": "./update-changelog",
+    "prepublishOnly": "./create-gh-release"
   },
   "keywords": [],
   "author": "Braintreeps <code@getbraintree.com> (https://braintreepayments.com)",

@@ -1,0 +1,22 @@
+{
+  "name": "bt-js-lifecycle-scripts",
+  "version": "0.0.1",
+  "description": "Shared lifecycle scripts for Braintree: Updates Changelog on version; Updates Github releases on publish.",
+  "bin": {
+    "run-version": "./update-changelog",
+    "run-publish": "./create-gh-release"
+  },
+  "scripts": {
+    "version": "run-version",
+    "prepublishOnly": "create-gh-release"
+  },
+  "keywords": [],
+  "author": "Braintreeps <code@getbraintree.com> (https://braintreepayments.com)",
+  "contributors": [
+    {
+      "name": "Aki Rose",
+      "email": "aki.rose@getbraintree.com"
+    }
+  ],
+  "license": "ISC"
+}

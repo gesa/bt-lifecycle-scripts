@@ -1,0 +1,25 @@
+#!/bin/bash
+
+tagPushed=$(git ls-remote --tags origin | grep -c "$npm_package_version")
+headerLines=$(grep -n "##" CHANGELOG.md | cut -f1 -d:)
+originRemote=$(git config --get remote.origin.url)
+lineNos=()
+
+if [ "$tagPushed" -eq "0" ]; then echo "Current version tag doesn't exist on remote." && exit 1; fi
+
+while IFS='' read -r line; do lineNos+=("$line"); done < <(echo "$headerLines")
+
+releaseNotes=$(sed -n -e "${lineNos[0]}",$((lineNos[1]-1))p CHANGELOG.md)
+
+# add GITHUB_HOST in case `hub` is configured to interact with the wrong github
+if [ "$(echo "$originRemote" | grep -ic "github.com")" -ge "1" ]; then
+  ghHost="github.com"
+elif [ "$(echo "$originRemote" | grep -ic "github.braintreeps.com")" -ge "1" ]; then
+  ghHost="github.braintreeps.com"
+else
+  echo "(publish) ERROR Your local git config is lacking a git origin matching"
+  echo "(publish) ERROR github.com or github.braintreeps.com"
+  exit 1;
+fi
+
+GITHUB_HOST="$ghHost" hub release create -m "${releaseNotes//\#\#/}" "v$npm_package_version"
